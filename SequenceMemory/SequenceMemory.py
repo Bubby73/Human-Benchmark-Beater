@@ -1,6 +1,7 @@
 from mss import mss
 import mss.tools
 import pyautogui
+import keyboard
 from PIL import Image
 import time
 
@@ -62,7 +63,7 @@ while True:
         level += 1
 
     #check if escape is pressed
-    if pyautogui.keyDown('esc'):
+    if keyboard.is_pressed('esc'):
         break
 
 

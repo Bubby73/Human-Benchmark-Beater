@@ -5,6 +5,8 @@ from PIL import Image
 
 clicked = False
 
+pyautogui.click(970, 460)
+
 while True:
     with mss.mss() as sct:
         # The screen part to capture
