@@ -2,8 +2,11 @@ from mss import mss
 import mss.tools
 import pyautogui
 from PIL import Image
+import time
 
 clicked = False
+
+time.sleep(5)
 
 pyautogui.click(970, 460)
 

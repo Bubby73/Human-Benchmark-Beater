@@ -1,10 +1,11 @@
 from mss import mss
 import mss.tools
 import pyautogui
-import keyboard
 from PIL import Image
 import time
 import numpy as np
+
+time.sleep(5)
 
 pyautogui.click(972, 418)
 
@@ -39,5 +40,5 @@ for i in range (0, 30):
     
                 
                 
-        # convert white pixel coordinate to screen coordinate
+  
         

@@ -10,6 +10,8 @@ pxlPos = [[65,90],[235,90],[400,90],[65,250],[235,250],[400,250],[65,410],[235,4
 
 sequence = []
 
+time.sleep(5)
+
 pyautogui.click(980, 670)
 
 def screenShot():
