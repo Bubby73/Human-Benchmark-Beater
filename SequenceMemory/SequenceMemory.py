@@ -41,7 +41,7 @@ def screenShot():
     
 def click():
     for i in range(0,len(sequence)):
-        time.sleep(0.7) 
+        time.sleep(0.6) 
         pyautogui.click(mousePos[sequence[i]][0], mousePos[sequence[i]][1])
         print(sequence[i])
 
