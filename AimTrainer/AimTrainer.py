@@ -7,7 +7,7 @@ import numpy as np
 
 time.sleep(5)
 
-pyautogui.click(972, 418)
+pyautogui.click(972, 530)
 
 def click(white_pixel):
     screen_coordinate = (white_pixel[0], white_pixel[1] + monitor["top"])

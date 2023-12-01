@@ -10,7 +10,9 @@ time.sleep(5)
 
 pyautogui.click(970, 460)
 
-while True:
+clicks = 0
+while True and clicks < 6:
+
     with mss.mss() as sct:
         # The screen part to capture
         monitor = {"top": 400, "left": 960, "width": 1, "height": 1}
@@ -43,4 +45,7 @@ while True:
         pyautogui.click(970, 460)
         clicked = True
         print ("green")
+        clicks += 1
+
+
     
