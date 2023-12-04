@@ -15,9 +15,9 @@ pyautogui.click(980, 670)
 def screenshot():
     with mss.mss() as sct:
         # The screen part to capture
-        monitor = {"top": 330, "left": 740, "width": 470, "height": 470}
+        monitor = {"top": 335, "left": 740, "width": 520, "height": 470}
         output = "VMSquare.png".format(**monitor)
-
+    
         # Grab the data
         sct_img = sct.grab(monitor)
 

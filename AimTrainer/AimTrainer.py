@@ -18,7 +18,7 @@ for i in range (0, 30):
         # The screen part to capture
         for i in range (0, 10):
             x = 500 + (i * 100)
-            monitor = {"top": 200, "left": x, "width": 1, "height": 450}
+            monitor = {"top": 200, "left": x, "width": 1, "height": 550}
             # Grab the data
             sct_img = sct.grab(monitor)
 
@@ -27,11 +27,14 @@ for i in range (0, 30):
 
             white_pixel = None
             
-            for y in range(img_array.shape[0]):
+            y = 0
+            while y < img_array.shape[0]:
                 if np.all(img_array[y] == [255, 255, 255]):
                     white_pixel = (x, y)
                     click(white_pixel)
                     break
+                print(y)
+                y += 4
                 
                 if white_pixel is not None:
                     pyautogui.moveTo(white_pixel[0], white_pixel[1])
