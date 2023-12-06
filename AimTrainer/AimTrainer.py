@@ -5,41 +5,46 @@ from PIL import Image
 import time
 import numpy as np
 
-time.sleep(5)
+time.sleep(2)
 
-pyautogui.click(972, 530)
+top = 300
+left = 500
+width = 1000
+height = 400
 
-def click(white_pixel):
-    screen_coordinate = (white_pixel[0], white_pixel[1] + monitor["top"])
-    pyautogui.click(screen_coordinate[0], screen_coordinate[1])
+pyautogui.click(972, 450)
 
-for i in range (0, 30):
-    with mss.mss() as sct:
-        # The screen part to capture
-        for i in range (0, 10):
-            x = 500 + (i * 100)
-            monitor = {"top": 200, "left": x, "width": 1, "height": 550}
-            # Grab the data
-            sct_img = sct.grab(monitor)
 
-            img = Image.frombytes("RGB", sct_img.size, sct_img.bgra, "raw", "BGRX")
-            img_array = np.array(img)      
+for i in range (0, 30):    
+        x = 100 + left
+        
+        while x < width + left: 
+            with mss.mss() as sct:
 
-            white_pixel = None
-            
-            y = 0
-            while y < img_array.shape[0]:
-                if np.all(img_array[y] == [255, 255, 255]):
-                    white_pixel = (x, y)
-                    click(white_pixel)
-                    break
-                print(y)
-                y += 4
+                line = {"top": top, "left": x, "width": 1, "height": height}
+
+                output = "line.png".format(**line)
+
+                sct_img = sct.grab(line)
+
+                y = 0
+                while y < height:
+                    pyautogui.moveTo(x + top, y + left)
+                    mss.tools.to_png(sct_img.rgb, sct_img.size, output=output)
+                    im = Image.open("line.png")
+                    rgb_im = im.convert('RGB')
+                    r, g, b = rgb_im.getpixel((0, 0))
+                    if g == 43:
+                        #pyautogui.click(x, y)
+                        print(x, y)
+                        break  
+                    
                 
-                if white_pixel is not None:
-                    pyautogui.moveTo(white_pixel[0], white_pixel[1])
-                    break
 
+               
+                    y += 2
+            x += 100
+            
     
                 
                 

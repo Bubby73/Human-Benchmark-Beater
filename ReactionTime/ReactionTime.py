@@ -11,7 +11,7 @@ time.sleep(5)
 pyautogui.click(970, 460)
 
 clicks = 0
-while True and clicks < 6:
+while True and clicks < 5:
 
     with mss.mss() as sct:
         # The screen part to capture
