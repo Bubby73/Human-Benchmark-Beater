@@ -3,7 +3,6 @@ import mss.tools
 import pyautogui
 from PIL import Image
 import time
-import numpy as np
 
 time.sleep(2)
 
@@ -14,8 +13,9 @@ height = 400
 
 pyautogui.click(972, 450)
 
+clicks = 0
 
-for i in range (0, 30):    
+while clicks < 30:
         x = 100 + left
         
         while x < width + left: 
@@ -23,26 +23,26 @@ for i in range (0, 30):
 
                 line = {"top": top, "left": x, "width": 1, "height": height}
 
-                output = "line.png".format(**line)
-
                 sct_img = sct.grab(line)
 
+                img = Image.new("RGB", sct_img.size)
+
+                pixels = zip(sct_img.raw[2::4], sct_img.raw[1::4], sct_img.raw[::4])
+                img.putdata(list(pixels))
+            
+                
                 y = 0
                 while y < height:
-                    pyautogui.moveTo(x + top, y + left)
-                    mss.tools.to_png(sct_img.rgb, sct_img.size, output=output)
-                    im = Image.open("line.png")
-                    rgb_im = im.convert('RGB')
-                    r, g, b = rgb_im.getpixel((0, 0))
-                    if g == 43:
-                        #pyautogui.click(x, y)
-                        print(x, y)
+                    r = img.getpixel((0, y))[0]      
+                    if r != 43:
+                        pyautogui.click(x, y + top)
+                        clicks += 1
                         break  
                     
                 
 
                
-                    y += 2
+                    y += 60
             x += 100
             
     
