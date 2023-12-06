@@ -13,9 +13,7 @@ height = 400
 
 pyautogui.click(972, 450)
 
-clicks = 0
-
-while clicks < 30:
+for i in range(0, 25):
         x = 100 + left
         
         while x < width + left: 
@@ -36,17 +34,7 @@ while clicks < 30:
                     r = img.getpixel((0, y))[0]      
                     if r != 43:
                         pyautogui.click(x, y + top)
-                        clicks += 1
                         break  
-                    
-                
-
-               
-                    y += 60
+                        
+                    y += 55
             x += 100
-            
-    
-                
-                
-  
-        
