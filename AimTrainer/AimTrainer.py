@@ -6,15 +6,15 @@ import time
 
 time.sleep(2)
 
-top = 300
-left = 500
-width = 1000
-height = 400
+top = 130
+left = 855
+width = 220
+height = 100
 
-pyautogui.click(972, 450)
+pyautogui.click(972, 180)
 
 for i in range(0, 25):
-        x = 100 + left
+        x = 25 + left
         
         while x < width + left: 
             with mss.mss() as sct:
@@ -27,14 +27,18 @@ for i in range(0, 25):
 
                 pixels = zip(sct_img.raw[2::4], sct_img.raw[1::4], sct_img.raw[::4])
                 img.putdata(list(pixels))
-            
+                #time.sleep(0.2)
                 
                 y = 0
                 while y < height:
+                    #print(y)
+                    #if x == 1100:
+                        #img.show()
                     r = img.getpixel((0, y))[0]      
                     if r != 43:
                         pyautogui.click(x, y + top)
                         break  
                         
-                    y += 55
-            x += 100
+                    #y = height mod 10
+                    y = 1 + y
+            x += 25

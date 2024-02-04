@@ -10,3 +10,4 @@ while True:
 
     if keyboard.is_pressed('esc'):
         break
+q
