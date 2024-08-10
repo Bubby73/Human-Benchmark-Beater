@@ -7,15 +7,15 @@ import time
 
 boundCoords = [[740, 330], [1210, 330], [740, 800], [1210, 800]]
 
-time.sleep(5)
+time.sleep(2)
 
-pyautogui.click(980, 670)
+pyautogui.click(960, 570)
 
 
 def screenshot():
     with mss.mss() as sct:
         # The screen part to capture
-        monitor = {"top": 335, "left": 740, "width": 520, "height": 470}
+        monitor = {"top": 255, "left": 750, "width": 420, "height": 420}
         output = "VMSquare.png".format(**monitor)
     
         # Grab the data
@@ -30,36 +30,37 @@ def numberOfsquares():
     rgb_im = im.convert('RGB')
     count = 0
     prev = False
-    firstSquare = 0
-    for x in range(0, 470):
+    for x in range(0, 420):
+        #pyautogui.moveTo(x + 750, 280)
         #if pixel is blue and previous pixel is not blue
-        if rgb_im.getpixel((x, 10)) == (43, 135, 209) and prev == False:
+        if rgb_im.getpixel((x, 25)) == (43, 135, 209) and prev == False:
+            print("hallo")
             count += 1
             prev = True
-        if rgb_im.getpixel((x, 10)) != (43, 135, 209):
+            #print(count)
+        if rgb_im.getpixel((x, 25)) != (43, 135, 209):
             prev = False
 
+    print(count)
     return count
  
 
 def findWhitesquares(gridSize):
     im = Image.open("VMSquare.png")
     rgb_im = im.convert('RGB')
-    x =  470/gridSize/2
-    y =  470/gridSize/2
+    x =  420/gridSize/2
+    y =  420/gridSize/2
     whiteSquares = []
-    print(x, y)
     time.sleep(0.8)
-    while x < 470:
-        while y < 480:
+    while x < 420:
+        while y < 420:
             if rgb_im.getpixel((x, y)) == (255, 255, 255):
                 whiteSquares.append((x, y))
-                pyautogui.click(x + 740, y + 330)
-            y = y + 470/gridSize
-        x = x + 470/gridSize
-        y = 470/gridSize/2
+                pyautogui.click(x + 740, y + 245)
+            y = y + 420/gridSize
+        x = x + 420/gridSize
+        y = 420/gridSize/2
     
-    print(whiteSquares)
     return whiteSquares
 
 time.sleep(0.6)
@@ -67,6 +68,6 @@ while True:
     time.sleep(0.6)
     screenshot()
     gridSize = numberOfsquares()
-    gridSize += 1
+    gridSize -= 1
     whiteSquares = findWhitesquares(gridSize)
 

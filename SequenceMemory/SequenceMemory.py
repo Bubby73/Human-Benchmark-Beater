@@ -5,19 +5,19 @@ import keyboard
 from PIL import Image
 import time
 
-mousePos = [[800,380],[970,380],[1140,380],[800,560],[970,560],[1140,560],[800,740],[970,740],[1140,740]]
+mousePos = [[830,330],[960,330],[1090,330],[830,470],[960,470],[1090,470],[830,590],[960,590],[1090,590]]
 pxlPos = [[65,90],[235,90],[400,90],[65,250],[235,250],[400,250],[65,410],[235,410],[400,410]]
 
 sequence = []
 
-time.sleep(5)
+time.sleep(3)
 
-pyautogui.click(980, 670)
+pyautogui.click(960, 570)
 
 def screenShot():
     with mss.mss() as sct:
         # The screen part to capture
-        monitor = {"top": 300, "left": 740, "width": 460, "height": 460}
+        monitor = {"top": 240, "left": 730, "width": 460, "height": 460}
         output = "3x3.png".format(**monitor)
 
         # Grab the data
@@ -48,7 +48,8 @@ def click():
 
 level = 1
 while True:
-    print(sequence)
+    if len(sequence) > 0:
+        print(sequence)
     if len(sequence) < level:
         j = screenShot()
         if j != 9:
